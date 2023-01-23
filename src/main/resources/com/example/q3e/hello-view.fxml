@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.q3e.HelloController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
          <menus>
@@ -35,8 +35,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
+
                   <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="back" GridPane.halignment="LEFT" />
                   <Button mnemonicParsing="false" text="next" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                  <Label fx:id="welcomeText" text="Label" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
                <padding>
                   <Insets bottom="5.0" right="10.0" />
@@ -44,7 +46,7 @@
             </GridPane>
             <Pane VBox.vgrow="ALWAYS">
                <children>
-                  <Label layoutX="147.0" layoutY="77.0" text="Label" />
+                  <Label fx:id="quest" layoutX="147.0" layoutY="77.0" text="Label" />
                </children>
             </Pane>
             <GridPane>
@@ -57,19 +59,19 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="id1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="id1" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="id1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin></Button>
-                  <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="id2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="id2" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="id2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                    <GridPane.margin>
                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                    </GridPane.margin></Button>
-                  <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="id3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="id3" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="id3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                 <GridPane.margin>
                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                 </GridPane.margin></Button>
-                  <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="id4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="id4" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="id4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
              <GridPane.margin>
                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
              </GridPane.margin></Button>
@@ -87,4 +89,15 @@
          </padding>
       </VBox>
    </center>
+   <bottom>
+      <HBox prefWidth="200.0" rotate="180.0" BorderPane.alignment="CENTER_RIGHT">
+         <children>
+            <Button fx:id="test" mnemonicParsing="false" onAction="#testAction" rotate="180.0" text="confirm">
+            </Button>
+         </children>
+         <padding>
+            <Insets left="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </bottom>
 </BorderPane>

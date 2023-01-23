@@ -3,9 +3,9 @@ package com.example.q3e;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bson.Document;
-import org.bson.json.JsonObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class QuizController {
@@ -75,17 +75,28 @@ public class QuizController {
         this.name = name;
         return this;
     }
+
+    public int getNrOfLine() {
+        return Line.getIterId();
+    }
+
+    public List<Line> getQuastions() {
+        return quastions;
+    }
+    public Iterator<Line> getIteratorQuestions(){
+        return quastions.iterator();
+    }
 }
-class Line {
-    static long iterId =1;
-    long id;
+class Line extends Question{
+    static int iterId =1;
+    int id;
     String question;
     static int nrOfAnswer=4;
     List<String> wrongAnswer;
     List<String> correAnswer;
     Line(){
-        iterId++;
         id= iterId;
+        iterId++;
     }
     Document getDocumet(){
         Document d=new Document("id",id).append("question",question)
@@ -97,11 +108,11 @@ class Line {
         return nrOfAnswer;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public static long getIterId() {
+    public static int getIterId() {
         return iterId;
     }
 
