@@ -30,6 +30,18 @@ public class QuizController {
         qz.addQuestion("question",c,w).addQuestion("question",w,c);
         return qz;
     }
+    static public Question makeQuestion(String question, List<String> corectAns, List<String> wrongAns,int id){
+        if(wrongAns.size()+corectAns.size()>Line.nrOfAnswer){
+            logger.error("wrong number of answer\nmax is "+Line.nrOfAnswer);
+            return null;
+        }
+        //logger.info("quastion "+question+" was created");
+        return new Line()
+                .setQuastion(question)
+                .setWrongAnswer(wrongAns)
+                .setCorreAnswer(corectAns)
+                .setid(id);
+    }
     public QuizController addQuestion(String question, List<String> corectAns, List<String> wrongAns){
         if(wrongAns.size()+corectAns.size()>Line.nrOfAnswer){
             logger.error("wrong number of answer\nmax is "+Line.nrOfAnswer);
@@ -77,7 +89,7 @@ public class QuizController {
     }
 
     public int getNrOfLine() {
-        return Line.getIterId();
+        return quastions.size();
     }
 
     public List<Line> getQuastions() {
@@ -103,6 +115,10 @@ class Line extends Question{
                 .append("cor",correAnswer).append("wrong",wrongAnswer);
         return d;
     }
+    protected Line setid(int id){
+        this.id=id;
+        return this;
+    }
 
     public int getNrOfAnswer() {
         return nrOfAnswer;
@@ -123,6 +139,19 @@ class Line extends Question{
     public Line setQuastion(String quastion) {
         this.question = quastion;
         return this;
+    }
+
+    @Override
+    public boolean ansIsCorrect() {
+        if(null == ans){
+            return false;
+        }
+        for(String s:correAnswer){
+            if(s.equals(ans)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<String> getWrongAnswer() {

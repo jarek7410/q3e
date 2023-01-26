@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="155.0" prefWidth="222.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.q3e.Qsummary">
+   <children>
+      <Label layoutX="100" layoutY="15.0" text="Result" />
+      <Label layoutX="100" layoutY="45.0" text="0/0" fx:id="result"/>
+      <Button layoutX="120.0" layoutY="116.0" mnemonicParsing="false" text="back to menu" onAction="#toStart" />
+   </children>
+</AnchorPane>

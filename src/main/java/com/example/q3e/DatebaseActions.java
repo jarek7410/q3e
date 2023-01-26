@@ -36,7 +36,7 @@ public class DatebaseActions {
         qz=QuizController.startFromDocument(db.getQuiz());
         System.out.println(qz.getNrOfLine());
     }
-    private void saveQuiz(Document Q){
+    public boolean saveQuiz(Document Q){
         try(MongoClient mongoClient = MongoClients.create(appdb)){
             MongoDatabase db =mongoClient.getDatabase(mongodb);
             db.createCollection(Qname);
@@ -59,19 +59,25 @@ public class DatebaseActions {
                 }
                 catch (MongoException ee){
                     logger.fatal(ee.getMessage());
+                    return false;
                 }
             }
         }
+        return true;
     }
     public Document getQuiz(){
         MongoClient mongoClient = MongoClients.create(appdb);
         logger.info(appdb + " set as working db location");
         MongoDatabase database = mongoClient.getDatabase(mongodb);
         MongoCollection<Document> collection = database.getCollection(Qname);
-        logger.info("quiz grabbed");
-        //logger.trace(collectiontoJson().toString());
-        return collection.find().first();
 
+        try {
+            Document out =collection.find().first();
+            logger.info("quiz grabbed");
+            return out;
+        }catch (Exception e){
+            return null;
+        }
     }
 
 

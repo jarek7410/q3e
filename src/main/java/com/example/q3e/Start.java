@@ -6,7 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.effect.Effect;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +33,11 @@ public class Start {
         DatebaseActions db = new DatebaseActions(serverdb.getText());
         db.setQuiz(Qname.getText());
         Document col=db.getQuiz();
+        if(null==col){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "error\ndatabase unrechable", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
         logger.debug("db doc loaded");
         QuizController qz=QuizController.setFromDocument(col);
         logger.info("action: TAKE "+Qname.getText());
@@ -40,6 +46,20 @@ public class Start {
 
         HelloController take=loader.getController();
         take.setQz(qz);
+
+        //root= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene=new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void newQ(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("newQuize.fxml"));
+        root=loader.load();
+
+        QuizCreatorController take=loader.getController();
+        take.setQz(serverdb.getText(),Qname.getText());
 
         //root= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
