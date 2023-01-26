@@ -51,7 +51,7 @@ public class QuizController {
                 .setQuastion(question)
                 .setWrongAnswer(wrongAns)
                 .setCorreAnswer(corectAns));
-        logger.info("quastion "+question+" was added");
+        logger.info("add quastion: "+question);
         return this;
     }
     public Document getDocument(){

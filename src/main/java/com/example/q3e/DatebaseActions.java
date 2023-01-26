@@ -73,7 +73,7 @@ public class DatebaseActions {
 
         try {
             Document out =collection.find().first();
-            logger.info("quiz grabbed");
+            logger.info("quiz loaded");
             return out;
         }catch (Exception e){
             return null;

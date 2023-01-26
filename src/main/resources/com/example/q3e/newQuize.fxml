@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.q3e.QuizCreatorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="360.0" style="-fx-background-color: #2d3436;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.q3e.QuizCreatorController">
 <top>
     <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -31,10 +31,10 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#backQ" text="back" GridPane.halignment="LEFT" />
-                    <Button fx:id="next" mnemonicParsing="false" onAction="#nextQ" text="next" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
-                  <Button mnemonicParsing="false" onAction="#saveQ" text="confirm all" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                  <Label fx:id="welcomeText" text="Label" GridPane.columnIndex="1" />
+                    <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#backQ" style="-fx-background-color: #636e72;" text="back" textFill="WHITE" GridPane.halignment="LEFT" />
+                    <Button fx:id="next" mnemonicParsing="false" onAction="#nextQ" style="-fx-background-color: #636e72;" text="next" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
+                  <Button mnemonicParsing="false" onAction="#saveQ" style="-fx-background-color: #dfe6e9;" text="confirm all" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                  <Label fx:id="welcomeText" text="Label" textFill="WHITE" GridPane.columnIndex="1" />
                 </children>
                 <padding>
                     <Insets bottom="5.0" right="10.0" />
@@ -59,19 +59,19 @@
                     <Insets top="10.0" />
                 </padding>
                <children>
-                  <TextField fx:id="idw1" promptText="wrong1" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="idw1" promptText="wrong" style="-fx-background-color: #e17055;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="2.5" />
                      </GridPane.margin></TextField>
-                  <TextField fx:id="idc" promptText="correct">
+                  <TextField fx:id="idc" promptText="correct" style="-fx-background-color: #00b894;">
                      <GridPane.margin>
                         <Insets right="2.5" />
                      </GridPane.margin></TextField>
-                  <TextField fx:id="idw2" promptText="wrong2" GridPane.rowIndex="2">
+                  <TextField fx:id="idw2" promptText="wrong" style="-fx-background-color: #e17055;" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="2.5" />
                      </GridPane.margin></TextField>
-                  <TextField fx:id="idw3" promptText="wrong3" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="idw3" promptText="wrong" style="-fx-background-color: #e17055;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="2.5" />
                      </GridPane.margin></TextField>

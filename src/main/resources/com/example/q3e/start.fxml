@@ -4,28 +4,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.q3e.Start">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="320.0" style="-fx-background-color: #2d3436;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.q3e.Start">
    <children>
       <HBox>
          <children>
-            <TextField fx:id="serverdb" promptText="server address" text="localhost">
+            <TextField fx:id="serverdb" promptText="server address" style="-fx-background-color: #b2bec3;" text="localhost">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin></TextField>
-            <TextField fx:id="Qname" promptText="Qiuz name" text="test" />
+            <TextField fx:id="Qname" promptText="Qiuz name" style="-fx-background-color: #b2bec3;" text="test">
+               <HBox.margin>
+                  <Insets left="5.0" right="10.0" />
+               </HBox.margin></TextField>
          </children>
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </HBox>
-      <Button mnemonicParsing="false" onAction="#newQ" text="new">
+      <Button mnemonicParsing="false" onAction="#newQ" style="-fx-background-color: #636e72;" text="new" textFill="WHITE">
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
       </Button>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#takeQ" text="take">
+            <Button mnemonicParsing="false" onAction="#takeQ" style="-fx-background-color: #636e72;" text="take" textFill="WHITE">
                <HBox.margin>
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>

@@ -29,6 +29,7 @@ public class Start {
     private Parent root;
     @FXML
     protected void takeQ(ActionEvent event) throws IOException {
+        logger.info("load quiz");
         logger.debug(serverdb.getText()+ " -> "+Qname.getText());
         DatebaseActions db = new DatebaseActions(serverdb.getText());
         db.setQuiz(Qname.getText());
@@ -36,11 +37,13 @@ public class Start {
         if(null==col){
             Alert alert = new Alert(Alert.AlertType.ERROR, "error\ndatabase unrechable", ButtonType.OK);
             alert.showAndWait();
+            logger.fatal("cannot connect to database");
             return;
         }
         logger.debug("db doc loaded");
         QuizController qz=QuizController.setFromDocument(col);
-        logger.info("action: TAKE "+Qname.getText());
+        logger.debug("action: TAKE -> "+Qname.getText()+" ");
+        logger.info("load quiz taking window");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
         root=loader.load();
 
@@ -55,6 +58,7 @@ public class Start {
     }
 
     public void newQ(ActionEvent event) throws IOException {
+        logger.info("load new quize window");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("newQuize.fxml"));
         root=loader.load();
 

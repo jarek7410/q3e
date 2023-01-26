@@ -61,7 +61,7 @@ public class QuizCreatorController {
                     quz=QuizController.makeQuestion(question,c,w,lineId);
                     line.add((Line) quz);
                     logger.trace("Q id: "+(((Line) quz).id));
-                    logger.trace("question add "+question);
+                    logger.debug("question add "+question);
                     lineId++;
                 }
             }else {
@@ -143,6 +143,7 @@ public class QuizCreatorController {
         this.serverdb=dbhost;
         this.Qname=qnameText;
         ans=new ArrayList<>();
+        idc.setStyle("-fx-background-color: #badc58");
         ans.add(idc);
         ans.add(idw1);
         ans.add(idw2);
@@ -157,7 +158,7 @@ public class QuizCreatorController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("start.fxml"));
         root=loader.load();
         //root= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((MenuItem)event.getSource()).getParentPopup().getOwnerWindow();;
         scene=new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -173,15 +174,5 @@ public class QuizCreatorController {
         }
 
     }
-    public  void newQ(ActionEvent event){
-        qz=new QuizController(qnameText);
-        this.serverdb=dbhost;
-        this.Qname=qnameText;
-        ans=new ArrayList<>();
-        ans.add(idc);
-        ans.add(idw1);
-        ans.add(idw2);
-        ans.add(idw3);
-        changeQ(0);
-    }
+
 }

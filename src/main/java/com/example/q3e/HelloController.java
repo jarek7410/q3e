@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -51,12 +53,11 @@ public class HelloController {
 
     @FXML
     protected void nextQ() {
-        logger.trace("next question: " + lineId);
-
         lineId += 1;
         if (lineId >= line.size()) {
             lineId = 0;
         }
+        logger.trace("next question id: " + lineId);
         changeQ(lineId);
     }
 
@@ -72,8 +73,20 @@ public class HelloController {
     @FXML
     protected void ansButton(ActionEvent event){
         Button b=(Button)event.getSource();
-        logger.trace("answ chosen:"+b.getText());
+        logger.trace("answ chosen: "+b.getText());
         quz.ans=b.getText();
+        buttoncheck();
+    }
+    private void buttoncheck(){
+        logger.debug("set button status");
+        ans.forEach(button -> {
+            if(button.getText().equals(quz.ans)){
+                button.setStyle("-fx-background-color: #0984e3");
+            }
+            else {
+                button.setStyle("-fx-background-color: #b2bec3");
+            }
+        });
     }
 
     public HelloController setQz(QuizController qz) {
@@ -86,14 +99,15 @@ public class HelloController {
         ans.add(id3);
         ans.add(id4);
         this.qz = q;
-        logger.info("questions: " + qz.getNrOfLine());
-        changeQ(n);
         logger.info("quiz start setup");
+        logger.info("number of questions: " + qz.getNrOfLine());
+        changeQ(n);
         return this;
     }
     public void changeQ(int n){
         line = qz.getQuastions();
         lineId = n;
+        logger.debug("Q grab");
         quz = line.get(lineId);
         List<String> answers = new ArrayList<>();
         answers.addAll(quz.getWrongAnswer());
@@ -104,6 +118,7 @@ public class HelloController {
         for (int i = 0; i < 4; i++) {
             ans.get(i).setText(answers.get(i));
         }
+        buttoncheck();
     }
     @FXML
     protected void summarize(ActionEvent event) throws IOException {
@@ -112,10 +127,10 @@ public class HelloController {
         for(Question q:line){
             if(q.ansIsCorrect()){
                 points++;
-                logger.trace("Q"+q.getId()+": "+q.ans+" was correct");
+                logger.trace("Q."+q.getId()+" "+q.ans+"correct");
             }
         }
-        logger.trace("Summary:"+points+" points");
+        logger.trace("Summary: "+points+" points");
 
         Stage stage;
         Scene scene;
