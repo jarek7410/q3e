@@ -19,6 +19,8 @@ public class HelloApplication extends Application {
         logger.info("load menu");
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("start.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        Start start=fxmlLoader.getController();
+        start.setup();
         stage.setTitle("quizesses!");
         stage.setScene(scene);
         stage.setResizable(false);

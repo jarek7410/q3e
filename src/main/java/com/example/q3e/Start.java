@@ -1,5 +1,6 @@
 package com.example.q3e;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +20,7 @@ import java.util.Objects;
 public class Start {
     private Logger logger= LogManager.getLogger("Start menu");
     @FXML
-    private TextField serverdb;
+    private ChoiceBox<String> serverdb;
     @FXML
     private TextField Qname;
 
@@ -30,8 +31,8 @@ public class Start {
     @FXML
     protected void takeQ(ActionEvent event) throws IOException {
         logger.info("load quiz");
-        logger.debug(serverdb.getText()+ " -> "+Qname.getText());
-        DatebaseActions db = new DatebaseActions(serverdb.getText());
+        logger.debug(serverdb.getValue()+ " -> "+Qname.getText());
+        DatebaseActions db = new DatebaseActions(serverdb.getValue());
         db.setQuiz(Qname.getText());
         Document col=db.getQuiz();
         if(null==col){
@@ -56,6 +57,10 @@ public class Start {
         stage.setScene(scene);
         stage.show();
     }
+    public void setup(){
+        String s[]={"server","localhost"};
+        serverdb.setItems(FXCollections.observableArrayList(s));
+    }
 
     public void newQ(ActionEvent event) throws IOException {
         logger.info("load new quize window");
@@ -63,7 +68,7 @@ public class Start {
         root=loader.load();
 
         QuizCreatorController take=loader.getController();
-        take.setQz(serverdb.getText(),Qname.getText());
+        take.setQz(serverdb.getValue(),Qname.getText());
 
         //root= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

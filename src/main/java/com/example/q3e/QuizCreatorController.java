@@ -156,6 +156,8 @@ public class QuizCreatorController {
         Scene scene;
         Parent root;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("start.fxml"));
+        Start start=loader.getController();
+        start.setup();
         root=loader.load();
         //root= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
         stage = (Stage) ((MenuItem)event.getSource()).getParentPopup().getOwnerWindow();;

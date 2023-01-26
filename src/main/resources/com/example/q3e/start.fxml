@@ -8,11 +8,24 @@
    <children>
       <HBox>
          <children>
-            <TextField fx:id="serverdb" promptText="server address" style="-fx-background-color: #b2bec3;" text="localhost">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="server:" textAlignment="CENTER" textFill="WHITE">
                <HBox.margin>
                   <Insets left="10.0" />
-               </HBox.margin></TextField>
-            <TextField fx:id="Qname" promptText="Qiuz name" style="-fx-background-color: #b2bec3;" text="test">
+               </HBox.margin>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <ChoiceBox fx:id="serverdb" prefWidth="90.0" style="-fx-background-color: #b2bec3;">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin></ChoiceBox>
+            <Label text="quize name:" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="Qname" prefWidth="90.0" promptText="Qiuz name" style="-fx-background-color: #b2bec3;" text="test">
                <HBox.margin>
                   <Insets left="5.0" right="10.0" />
                </HBox.margin></TextField>

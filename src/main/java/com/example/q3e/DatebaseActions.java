@@ -1,6 +1,6 @@
 package com.example.q3e;
 
-import com.mongodb.MongoException;
+import com.mongodb.*;
 import com.mongodb.client.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,8 +37,22 @@ public class DatebaseActions {
         System.out.println(qz.getNrOfLine());
     }
     public boolean saveQuiz(Document Q){
-        try(MongoClient mongoClient = MongoClients.create(appdb)){
-            MongoDatabase db =mongoClient.getDatabase(mongodb);
+        MongoDatabase db;
+        if(!appdb.contains("localhost")){
+        ConnectionString connectionString = new ConnectionString("mongodb+srv://jarek:IJMAxrNYI9JYl74s@cluster0.ausgoja.mongodb.net/?retryWrites=true&w=majority");
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .applyConnectionString(connectionString)
+                .serverApi(ServerApi.builder()
+                        .version(ServerApiVersion.V1)
+                        .build())
+                .build();
+        MongoClient mongoClient = MongoClients.create(settings);
+        db = mongoClient.getDatabase("test");
+        }else{
+            MongoClient mongoClient = MongoClients.create(appdb);
+            db =mongoClient.getDatabase(mongodb);
+        }
+        try{
             db.createCollection(Qname);
             MongoCollection<Document> col=db.getCollection(Qname);
             col.insertOne(Q);
@@ -48,7 +62,6 @@ public class DatebaseActions {
             if(48==e.getCode()){
 
                 try(MongoClient mongoClient = MongoClients.create(appdb)) {
-                    MongoDatabase db = mongoClient.getDatabase(mongodb);
                     MongoCollection<Document> col = db.getCollection(Qname);
                     col.drop();
                     logger.debug("put by drop of old collection");
@@ -66,10 +79,23 @@ public class DatebaseActions {
         return true;
     }
     public Document getQuiz(){
-        MongoClient mongoClient = MongoClients.create(appdb);
-        logger.info(appdb + " set as working db location");
-        MongoDatabase database = mongoClient.getDatabase(mongodb);
-        MongoCollection<Document> collection = database.getCollection(Qname);
+        MongoDatabase db;
+        if(!appdb.contains("localhost")) {
+            ConnectionString connectionString = new ConnectionString("mongodb+srv://jarek:IJMAxrNYI9JYl74s@cluster0.ausgoja.mongodb.net/?retryWrites=true&w=majority");
+            MongoClientSettings settings = MongoClientSettings.builder()
+                    .applyConnectionString(connectionString)
+                    .serverApi(ServerApi.builder()
+                            .version(ServerApiVersion.V1)
+                            .build())
+                    .build();
+            MongoClient mongoClient = MongoClients.create(settings);
+            db = mongoClient.getDatabase("test");
+        }else {
+            MongoClient mongoClient = MongoClients.create(appdb);
+            logger.info(appdb + " set as working db location");
+            db = mongoClient.getDatabase(mongodb);
+        }
+        MongoCollection<Document> collection = db.getCollection(Qname);
 
         try {
             Document out =collection.find().first();

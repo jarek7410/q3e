@@ -19,6 +19,9 @@ public class Qsummary {
         Parent root;
         HelloApplication.logger.info("load menu");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("start.fxml"));
+
+        Start start=loader.getController();
+        start.setup();
         root=loader.load();
         //root= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
